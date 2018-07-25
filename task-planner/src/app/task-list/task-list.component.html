@@ -1,32 +1,55 @@
-<div class="table-responsive">
-  <table class="table table-hover issue-tracker">
-    <thead>
+<app-statistic></app-statistic>
+  <div class="row">
+    <div class="col-8">
+      <button class="btn btn-success float-left" (click)="addTask()">Добавить задачу</button>
+    </div>
+    <div class="col-4">
+      <div class="form-check float-right">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" value="" (change)="filterTasks($event)">
+          Показать все
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+<div class="row">
+  <div class="table-responsive">
+    <table class="table table-hover issue-tracker">
+      <thead>
       <tr>
-      <th>Название задачи</th>
-      <th>Категория</th>
-      <th>Начало</th>
-      <th>Окончание</th>
+        <th>Название задачи</th>
+        <th>Категория</th>
+        <th>Начало</th>
+        <th>Окончание</th>
+        <th>Статус</th>
       </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
       <tr>
         <td>Проснуться</td>
         <td>Личное</td>
         <td>07:00</td>
         <td>12:00</td>
+        <td>Просрочено</td>
       </tr>
       <tr>
         <td>Сварить кофе</td>
         <td>Дела</td>
         <td>08:00</td>
         <td>08:30</td>
+        <td>В процессе</td>
       </tr>
       <tr>
         <td>Поработить мир</td>
         <td>Срочное</td>
         <td>12:00</td>
         <td>13:00</td>
+        <td>Завершено</td>
       </tr>
-    </tbody>
-  </table>
+      <tr app-list-row></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
