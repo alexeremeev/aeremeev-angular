@@ -1,4 +1,9 @@
-<app-statistic></app-statistic>
+<app-statistic
+  [tasksAll] = "getTaskListsSize()"
+  [tasksFinished] = "getTasksAmountByStatus('Выполнено')"
+  [tasksOverdue] = "getTasksAmountByStatus('Просрочено')"
+  [tasksPlanned] = "getTasksAmountByStatus('Запланировано')">
+</app-statistic>
   <div class="row">
     <div class="col-8">
       <button class="btn btn-success float-left" (click)="addTask()">Добавить задачу</button>
@@ -24,6 +29,7 @@
         <th>Начало</th>
         <th>Окончание</th>
         <th>Статус</th>
+        <th>Удалить</th>
       </tr>
       </thead>
       <tbody>
@@ -33,6 +39,7 @@
         <td>07:00</td>
         <td>12:00</td>
         <td>Просрочено</td>
+        <td><button class="btn btn-danger">Удалить задачу</button></td>
       </tr>
       <tr>
         <td>Сварить кофе</td>
@@ -40,6 +47,7 @@
         <td>08:00</td>
         <td>08:30</td>
         <td>В процессе</td>
+        <td><button class="btn btn-danger">Удалить задачу</button></td>
       </tr>
       <tr>
         <td>Поработить мир</td>
@@ -47,8 +55,15 @@
         <td>12:00</td>
         <td>13:00</td>
         <td>Завершено</td>
+        <td><button class="btn btn-danger">Удалить задачу</button></td>
       </tr>
-      <tr app-list-row></tr>
+      <tr app-list-row
+          [name] = "'Тестовая'"
+          [category] = "'Через INPUT'"
+          [dateStart] = "'12:00'"
+          [dateEnd] = "'13:00'"
+          [status] = "'Выполнено'"
+          (deleteTaskEmitter)="deleteTaskFromArray($event)"></tr>
       </tbody>
     </table>
   </div>
