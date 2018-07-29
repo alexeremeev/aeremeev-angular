@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-list.component.css']
 })
 export class TaskListComponent implements OnInit {
+  checked: boolean = false;
   tasks = [
     {
       name: 'Первая задача',
@@ -76,12 +77,21 @@ export class TaskListComponent implements OnInit {
   }
 
   filterTasks($event) {
-    console.log('showAll - ', $event.target.checked);
+    this.checked = $event.target.checked;
+    return $event.target.checked;
+  }
+
+  showRow(task) {
+    return this.checked || task.status !== 'Выполнено';
   }
   getTaskListsSize() {
     return this.tasks.length;
   }
   deleteTaskFromArray(name: string) {
+    let index = this.tasks.findIndex((task) => task.name === name);
+    if (index != -1) {
+      this.tasks.splice(index, 1);
+    }
     console.log('Задача ' + name + ' удалена');
   }
   getTasksAmountByStatus(status: string) {

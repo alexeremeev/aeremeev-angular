@@ -1,6 +1,6 @@
-  <td>{{name}}</td>
-  <td>{{category}}</td>
-  <td>{{dateStart}}</td>
-  <td>{{dateEnd}}</td>
-  <td>{{status}}</td>
-  <td><button class="btn btn-danger" (click)="deleteTask()">Удалить задачу</button></td>
+  <div class="divTableCell">{{name}}</div>
+  <div class="divTableCell">{{category}}</div>
+  <div class="divTableCell">{{dateStart}}</div>
+  <div class="divTableCell">{{dateEnd}}</div>
+  <div class="divTableCell" [ngClass] = "[status == 'Просрочено' ? 'overdue' : '']">{{status}}</div>
+  <div class="divTableCell"><button class="btn btn-danger" (click)="deleteTask()">Удалить задачу</button></div>
