@@ -6,7 +6,6 @@
 </app-statistic>
   <div class="row">
     <div class="col-8">
-      <button class="btn btn-success float-left" (click)="addTask()">Добавить задачу</button>
     </div>
     <div class="col-4">
       <div class="form-check float-right">
@@ -18,6 +17,7 @@
     </div>
   </div>
 <div class="divTable" style="border: 1px solid #000;" >
+  <div class="divTableRow" app-task-add (addTaskEmitter)="addNewTask($event)"></div>
   <div class="divTableHeading">
     <div class="divTableHead">
       Задача
