@@ -30,11 +30,15 @@ export class TaskAddComponent implements OnInit {
       this.status
     );
     this.addTaskEmitter.emit(task);
-    this.name = null;
-    this.category = null;
-    this.dateStart = null;
-    this.dateEnd = null;
-    this.status = null;
+    this.clearInputs();
     console.log('Задача создана');
+  }
+
+  clearInputs() {
+    this.name = '';
+    this.category = '';
+    this.dateStart = '';
+    this.dateEnd = '';
+    this.status = '';
   }
 }
