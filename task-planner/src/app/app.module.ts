@@ -8,6 +8,9 @@ import { StatisticComponent } from './task-list/statistic/statistic.component';
 import { ListRowComponent } from './task-list/list-row/list-row.component';
 import { TaskAddComponent } from './task-list/task-add/task-add.component';
 import { FormsModule }   from '@angular/forms';
+import { LogDirective } from './shared/directives/log.directive';
+import { ValidDateDirective } from './shared/directives/valid-date.directive';
+import { HighlightDirective } from './shared/directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { FormsModule }   from '@angular/forms';
     TaskListComponent,
     StatisticComponent,
     ListRowComponent,
-    TaskAddComponent
+    TaskAddComponent,
+    LogDirective,
+    ValidDateDirective,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
