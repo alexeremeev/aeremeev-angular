@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Task } from './task.model';
 
 @Component({
@@ -6,8 +6,13 @@ import { Task } from './task.model';
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
 })
+
 export class TaskListComponent implements OnInit {
+  editMode = false;
   checked: boolean = false;
+  fixedIndex: number;
+  taskToEdit : Task;
+  @Output() editEmitter = new EventEmitter<Task>();
   tasks: Task[] = [
     new Task (
       'Первая задача',
@@ -97,6 +102,25 @@ export class TaskListComponent implements OnInit {
   addNewTask(task: Task) {
     this.tasks.push(task);
   }
+  editTask(name: string) {
+    this.editMode = true;
+    let index = this.tasks.findIndex((task) => task.name === name);
+    let task = null;
+    if (index != -1) {
+      this.fixedIndex = index;
+      this.taskToEdit = {...this.tasks[index]};
+      task = this.tasks[index];
+    }
+    this.editEmitter.emit(task);
+  }
+
+  changeTask(task: Task) {
+    this.editMode = false;
+    if (task != null) {
+      this.tasks[this.fixedIndex] = task;
+    }
+  }
+
 
 }
 

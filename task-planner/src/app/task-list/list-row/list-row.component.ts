@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ListRowComponent implements OnInit {
 
   @Output() deleteTaskEmitter = new EventEmitter<string>();
+  @Output() editTaskEmitter = new EventEmitter<string>();
 
   @Input() name: string;
   @Input() category: string;
@@ -21,6 +22,9 @@ export class ListRowComponent implements OnInit {
   }
   deleteTask() {
     this.deleteTaskEmitter.emit(this.name)
+  }
+  editTask() {
+    this.editTaskEmitter.emit(this.name)
   }
 
 }

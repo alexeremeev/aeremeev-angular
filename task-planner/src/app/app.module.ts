@@ -11,6 +11,7 @@ import { FormsModule }   from '@angular/forms';
 import { LogDirective } from './shared/directives/log.directive';
 import { ValidDateDirective } from './shared/directives/valid-date.directive';
 import { HighlightDirective } from './shared/directives/highlight.directive';
+import { TaskEditComponent } from './task-list/task-edit/task-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HighlightDirective } from './shared/directives/highlight.directive';
     TaskAddComponent,
     LogDirective,
     ValidDateDirective,
-    HighlightDirective
+    HighlightDirective,
+    TaskEditComponent
   ],
   imports: [
     BrowserModule,

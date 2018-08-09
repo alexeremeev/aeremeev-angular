@@ -3,4 +3,7 @@
   <div class="divTableCell">{{dateStart}}</div>
   <div class="divTableCell">{{dateEnd}}</div>
   <div class="divTableCell" [ngClass] = "[status == 'Просрочено' ? 'overdue' : '']">{{status}}</div>
-  <div class="divTableCell"><button class="btn btn-danger" (click)="deleteTask()">Удалить задачу</button></div>
+  <div class="divTableCell">
+    <button class="btn btn-info float-left" (click)="editTask()">Edit</button>
+    <button class="btn btn-danger float-right" (click)="deleteTask()">Del</button>
+  </div>

@@ -1,0 +1,24 @@
+<div class="divTableCell">
+  <input highlight type="text" class="form-control" name="name" [(ngModel)]="task.name"
+         placeholder="Название" required>
+</div>
+<div class="divTableCell">
+  <input highlight type="text" class="form-control" name="category" [(ngModel)]="task.category"
+         placeholder="Категория" required>
+</div>
+<div class="divTableCell">
+  <input validDate highlight type="text" class="form-control" name="dateStart" [(ngModel)]="task.dateStart"
+         placeholder="Начало" required>
+</div>
+<div class="divTableCell">
+  <input validDate highlight type="text" class="form-control" name="dateEnd" [(ngModel)]="task.dateEnd"
+         placeholder="Окончание" required>
+</div>
+<div class="divTableCell">
+  <input highlight type="text" class="form-control" name="status" [(ngModel)]="task.status"
+         placeholder="Статус" required>
+</div>
+<div class="divTableCell">
+  <button class="btn btn-success float-left" (click)="editTask($event)">OK</button>
+  <button class="btn btn-danger float-right" (click)="cancelEdit($event)">Не ОК</button>
+</div>
