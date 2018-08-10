@@ -12,6 +12,7 @@ export class TaskListComponent implements OnInit {
   checked: boolean = false;
   fixedIndex: number;
   taskToEdit : Task;
+  task = null;
   @Output() editEmitter = new EventEmitter<Task>();
   tasks: Task[] = [
     new Task (
@@ -105,13 +106,11 @@ export class TaskListComponent implements OnInit {
   editTask(name: string) {
     this.editMode = true;
     let index = this.tasks.findIndex((task) => task.name === name);
-    let task = null;
     if (index != -1) {
       this.fixedIndex = index;
       this.taskToEdit = {...this.tasks[index]};
-      task = this.tasks[index];
+      this.task = this.tasks[index];
     }
-    this.editEmitter.emit(task);
   }
 
   changeTask(task: Task) {
