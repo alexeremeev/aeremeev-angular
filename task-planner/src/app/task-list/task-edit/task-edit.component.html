@@ -15,8 +15,13 @@
          placeholder="Окончание" required>
 </div>
 <div class="divTableCell">
-  <input highlight type="text" class="form-control" name="status" [(ngModel)]="task.status"
-         placeholder="Статус" required>
+  <div class="form-group">
+    <select class="form-control" [(ngModel)]="task.status">
+      <option>Запланировано</option>
+      <option>Выполнено</option>
+      <option>Просрочено</option>
+    </select>
+  </div>
 </div>
 <div class="divTableCell">
   <button class="btn btn-success float-left" (click)="editTask($event)">OK</button>
