@@ -12,7 +12,6 @@ export class TaskListComponent implements OnInit {
   checked: boolean = false;
   fixedIndex: number;
   taskToEdit : Task;
-  task = null;
   @Output() editEmitter = new EventEmitter<Task>();
   tasks: Task[] = [
     new Task (
@@ -109,7 +108,6 @@ export class TaskListComponent implements OnInit {
     if (index != -1) {
       this.fixedIndex = index;
       this.taskToEdit = {...this.tasks[index]};
-      this.task = this.tasks[index];
     }
   }
 
