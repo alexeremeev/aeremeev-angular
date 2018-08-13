@@ -12,6 +12,7 @@ import { LogDirective } from './shared/directives/log.directive';
 import { ValidDateDirective } from './shared/directives/valid-date.directive';
 import { HighlightDirective } from './shared/directives/highlight.directive';
 import { TaskEditComponent } from './task-list/task-edit/task-edit.component';
+import { MyTitleCasePipe } from './shared/pipes/my-title-case.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TaskEditComponent } from './task-list/task-edit/task-edit.component';
     LogDirective,
     ValidDateDirective,
     HighlightDirective,
-    TaskEditComponent
+    TaskEditComponent,
+    MyTitleCasePipe
   ],
   imports: [
     BrowserModule,

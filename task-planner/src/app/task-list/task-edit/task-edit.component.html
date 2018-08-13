@@ -1,10 +1,10 @@
 <div class="divTableCell">
-  <input highlight type="text" class="form-control" name="name" [(ngModel)]="task.name"
-         placeholder="Название" required>
+  <input highlight type="text" class="form-control" name="name" [ngModel]="task.name | myTitleCase"
+         (ngModelChange) = "task.name = $event" placeholder="Название" required>
 </div>
 <div class="divTableCell">
-  <input highlight type="text" class="form-control" name="category" [(ngModel)]="task.category"
-         placeholder="Категория" required>
+  <input highlight type="text" class="form-control" name="category" [ngModel]="task.category | myTitleCase"
+         (ngModelChange) = "task.category = $event" placeholder="Категория" required>
 </div>
 <div class="divTableCell">
   <input validDate highlight type="text" class="form-control" name="dateStart" [(ngModel)]="task.dateStart"

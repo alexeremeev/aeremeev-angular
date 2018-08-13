@@ -27,7 +27,7 @@ export class TaskAddComponent implements OnInit {
       this.category,
       this.dateStart,
       this.dateEnd,
-      this.status
+      this.status = '' ? 'Запланировано' : this.status
     );
     this.addTaskEmitter.emit(task);
     this.clearInputs();

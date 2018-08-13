@@ -1,10 +1,10 @@
 <div class="divTableCell">
-  <input highlight type="text" class="form-control" name="name" [(ngModel)]="name"
-         placeholder="Название" required>
+  <input highlight type="text" class="form-control" name="name"  [ngModel]="name | myTitleCase"
+        (ngModelChange) = "name = $event" placeholder="Название" required>
 </div>
 <div class="divTableCell">
-  <input highlight type="text" class="form-control" name="category" [(ngModel)]="category"
-         placeholder="Категория" required>
+  <input highlight type="text" class="form-control" name="category" [ngModel]="category | myTitleCase"
+         (ngModelChange) = "category = $event" placeholder="Категория" required>
 </div>
 <div class="divTableCell">
   <input validDate highlight type="text" class="form-control" name="dateStart" [(ngModel)]="dateStart"
@@ -15,8 +15,13 @@
          placeholder="Окончание" required>
 </div>
 <div class="divTableCell">
-  <input highlight type="text" class="form-control" name="status" [(ngModel)]="status"
-         placeholder="Статус" required>
+  <div class="form-group">
+    <select class="form-control" [(ngModel)]="status">
+      <option>Запланировано</option>
+      <option>Выполнено</option>
+      <option>Просрочено</option>
+    </select>
+  </div>
 </div>
 <div class="divTableCell">
   <button class="btn btn-success float-left" (click)="addTask()">Добавить задачу</button>
