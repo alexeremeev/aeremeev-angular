@@ -1,5 +1,5 @@
-  <div class="divTableCell">{{name}}</div>
-  <div class="divTableCell">{{category}}</div>
+  <div class="divTableCell">{{name | myTitleCase}}</div>
+  <div class="divTableCell">{{category | myTitleCase}}</div>
   <div class="divTableCell">{{dateStart}}</div>
   <div class="divTableCell">{{dateEnd}}</div>
   <div class="divTableCell" [ngClass] = "[status == 'Просрочено' ? 'overdue' : '']">{{status}}</div>
