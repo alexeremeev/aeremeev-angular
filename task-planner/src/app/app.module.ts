@@ -13,6 +13,7 @@ import { ValidDateDirective } from './shared/directives/valid-date.directive';
 import { HighlightDirective } from './shared/directives/highlight.directive';
 import { TaskEditComponent } from './task-list/task-edit/task-edit.component';
 import { MyTitleCasePipe } from './shared/pipes/my-title-case.pipe';
+import { HelperService } from './shared/services/helper.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { MyTitleCasePipe } from './shared/pipes/my-title-case.pipe';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [HelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
