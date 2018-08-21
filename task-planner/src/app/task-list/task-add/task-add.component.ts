@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Task } from '../task.model';
+import { HelperService } from '../../shared/services/helper.service';
 
 @Component({
+  providers: [HelperService],
   selector: '[app-task-add]',
   templateUrl: './task-add.component.html',
   styleUrls: ['./task-add.component.css']
