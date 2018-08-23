@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { HelperService } from '../../shared/services/helper.service';
+import { TaskContainerService } from '../../shared/services/task-container.service';
+import { Task } from '../task.model';
 
 @Component({
   providers: [HelperService],
@@ -19,15 +21,24 @@ export class ListRowComponent implements OnInit {
   @Input() dateEnd: string;
   @Input() status: string;
 
-  constructor(private helperService: HelperService) { }
+  constructor(private helperService: HelperService, private taskContainerService: TaskContainerService) { }
 
   ngOnInit() {
+    this.taskContainerService.dataUpdate$.subscribe((task: Task) => {
+    });
   }
   deleteTask() {
     this.deleteTaskEmitter.emit(this.name)
   }
   editTask() {
-    this.editTaskEmitter.emit(this.name)
+    let task = new Task(
+      this.name,
+      this.category,
+      this.dateStart,
+      this.dateEnd,
+      this.status
+    );
+    this.taskContainerService.updateData(task);
   }
 
 }

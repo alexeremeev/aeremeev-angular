@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Task } from './task.model';
 import { HelperService } from '../shared/services/helper.service';
+import { TaskContainerService } from '../shared/services/task-container.service';
 
 @Component({
   providers: [HelperService],
@@ -75,9 +76,20 @@ export class TaskListComponent implements OnInit {
 
   ];
 
-  constructor() { }
+  constructor(private taskContainerService: TaskContainerService) { }
 
   ngOnInit() {
+    this.taskContainerService.dataUpdate$.subscribe((task: Task) => {
+      this.taskToEdit = task;
+      if (this.fixedIndex != null && task.name != null && task.category != null && task.status != null) {
+          this.changeTask(task);
+      } else if (this.fixedIndex != null) {
+        this.fixedIndex = null;
+        this.editMode = false;
+      } else {
+        this.editTask(task.name);
+      }
+    });
   }
 
   filterTasks($event) {
@@ -118,6 +130,7 @@ export class TaskListComponent implements OnInit {
     if (task != null) {
       this.tasks[this.fixedIndex] = task;
     }
+    this.fixedIndex = null;
   }
 
 
