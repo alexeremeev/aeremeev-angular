@@ -79,7 +79,7 @@ export class TaskListComponent implements OnInit {
   ngOnInit() {
     this.taskContainerService.dataUpdate$.subscribe((task: Task) => {
       this.taskToEdit = task;
-      if (this.fixedIndex != null && task.name != null && task.category != null && task.status != null) {
+      if (this.fixedIndex != null && task != null) {
           this.changeTask(task);
       } else if (this.fixedIndex != null) {
         this.fixedIndex = null;

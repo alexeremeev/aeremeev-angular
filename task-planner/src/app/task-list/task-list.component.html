@@ -18,7 +18,7 @@
   </div>
 <div class="divTable" style="border: 1px solid #000;" >
   <div class="divTableRow" app-task-add (addTaskEmitter)="addNewTask($event)" *ngIf="!editMode"></div>
-  <div class="divTableRow" app-task-edit [task]="taskToEdit" *ngIf="editMode"></div>
+  <div class="divTableRow" app-task-edit [task]="taskToEdit" *ngIf="editMode" (completeEditEmitter) = "changeTask($event)"></div>
   <div class="divTableHeading">
     <div class="divTableHead">
       Задача

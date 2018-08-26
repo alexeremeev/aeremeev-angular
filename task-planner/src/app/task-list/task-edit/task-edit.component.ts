@@ -26,7 +26,7 @@ export class TaskEditComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges() {
     console.log('task to edit changed, entering edit mode for task: ' + this.task);
-    if (this.task != null && this.task.status == 'Выполнено') {
+    if (this.task && this.task.status === 'Выполнено') {
       alert('Выполненные задачи не подлежат редактированию!');
       this.cancelEdit();
     }
@@ -38,7 +38,7 @@ export class TaskEditComponent implements OnInit, OnDestroy, OnChanges {
     this.taskContainerService.updateData(this.task);
   }
   cancelEdit() {
-    this.taskContainerService.updateData(new Task(null, null, null, null, null));
+    this.completeEditEmitter.emit(null);
   }
 
 }

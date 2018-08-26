@@ -10,9 +10,7 @@ import { HelperService } from '../../shared/services/helper.service';
 })
 export class ListRowComponent implements OnInit {
 
-
   @Output() deleteTaskEmitter = new EventEmitter<string>();
-  @Output() editTaskEmitter = new EventEmitter<string>();
 
   @Input() name: string;
   @Input() category: string;
@@ -23,9 +21,9 @@ export class ListRowComponent implements OnInit {
   constructor(private helperService: HelperService, private taskContainerService: TaskContainerService) { }
 
   ngOnInit() {
-    this.taskContainerService.dataUpdate$.subscribe((task: Task) => {
-    });
+
   }
+
   deleteTask() {
     this.deleteTaskEmitter.emit(this.name)
   }

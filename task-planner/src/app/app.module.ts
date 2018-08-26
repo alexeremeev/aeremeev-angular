@@ -14,6 +14,7 @@ import { HighlightDirective } from './shared/directives/highlight.directive';
 import { TaskEditComponent } from './task-list/task-edit/task-edit.component';
 import { MyTitleCasePipe } from './shared/pipes/my-title-case.pipe';
 import { HelperService } from './shared/services/helper.service';
+import { TaskContainerService } from './shared/services/task-container.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,10 @@ import { HelperService } from './shared/services/helper.service';
     BrowserModule,
     FormsModule
   ],
-  providers: [HelperService],
+  providers: [
+    HelperService,
+    TaskContainerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
