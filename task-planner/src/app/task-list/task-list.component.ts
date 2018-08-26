@@ -1,10 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Task } from './task.model';
-import { HelperService } from '../shared/services/helper.service';
 import { TaskContainerService } from '../shared/services/task-container.service';
 
 @Component({
-  providers: [HelperService],
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
