@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Task } from './task.model';
-import { TaskContainerService } from '../shared/services/task-container.service';
+import { TaskContainerService } from '../../shared/services/task-container.service';
 
 @Component({
   selector: 'app-task-list',
