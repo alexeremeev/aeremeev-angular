@@ -1,8 +1,24 @@
-<div class="navbar col-12">
+  <!--<ul class="sidebar-nav">-->
+    <!--<li><a routerLink="/tasks">Задачи</a></li>-->
+    <!--<li><a routerLink="/notes">Заметки</a></li>-->
+  <!--</ul>-->
+  <div class="row">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active" routerLink="/tasks">
+            <a class="nav-link">Tasks</a>
+          </li>
+          <li class="nav-item" routerLink="/notes">
+            <a class="nav-link">Notes</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
   <div class="col-10">
   <button type="button" class="btn btn-block">Список задач</button>
   </div>
   <div class="col-2">
     {{userName}}
   </div>
-</div>
+  </div>

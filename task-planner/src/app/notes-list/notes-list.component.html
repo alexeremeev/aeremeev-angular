@@ -1,0 +1,18 @@
+<div class="row">
+<ng-container *ngFor="let note of notes">
+  <div class="col-8">
+    {{note.content}}
+  </div>
+  <div class="col-4">
+    {{note.date}}
+  </div>
+</ng-container>
+</div>
+<div class="row">
+  <div class="col-8">
+    <textarea [(ngModel)]="content" rows="4"></textarea>
+  </div>
+  <div class="col-4">
+    <button type="button" class="btn" (click)="addNote()">Добавить</button>
+  </div>
+</div>
