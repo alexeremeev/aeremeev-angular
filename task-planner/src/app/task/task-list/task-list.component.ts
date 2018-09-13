@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Task } from './task.model';
 import { TaskContainerService } from '../../shared/services/task-container.service';
+import { TaskStorageService } from '../../shared/services/task-storage.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task-list',
@@ -11,82 +13,33 @@ import { TaskContainerService } from '../../shared/services/task-container.servi
 export class TaskListComponent implements OnInit {
   editMode = false;
   checked: boolean = false;
-  fixedIndex: number;
+  // fixedIndex: number;
   taskToEdit : Task;
   @Output() editEmitter = new EventEmitter<Task>();
-  tasks: Task[] = [
-    new Task (
-      'Первая задача',
-      'Первая категория',
-      '2018-07-28 10:36',
-      '2018-07-28 11:36',
-      'Выполнено'
-    ),
-    new Task (
-      'Вторая задача',
-      'Вторая категория',
-      '2018-07-28 10:36',
-      '2018-07-28 11:36',
-      'Выполнено'
-    ),
-    new Task (
-      'Третья задача',
-      'Вторая категория',
-      '2018-07-28 10:36',
-      '2018-07-28 11:36',
-      'Выполнено'
-    ),
-    new Task (
-      'Четвертая задача',
-      'Вторая категория',
-      '2018-07-28 10:36',
-      '2018-07-28 11:36',
-      'Запланировано'
-    ),
-    new Task (
-      'Пятая задача',
-      'Вторая категория',
-      '2018-07-28 10:36',
-      '2018-07-28 11:36',
-      'Запланировано'
-    ),
-    new Task (
-      'Шестая задача',
-      'Вторая категория',
-      '2018-07-28 10:36',
-      '2018-07-28 11:36',
-      'Просрочено'
-    ),
-    new Task (
-      'Седьмая задача',
-      'Вторая категория',
-      '2018-07-28 10:36',
-      '2018-07-28 11:36',
-      'Просрочено'
-    ),
-    new Task (
-      'Восьмая задача',
-      'Вторая категория',
-      '2018-07-28 10:36',
-      '2018-07-28 11:36',
-      'Просрочено'
-    )
+  tasks: Task[];
 
-  ];
-
-  constructor(private taskContainerService: TaskContainerService) { }
+  constructor(private taskContainerService: TaskContainerService,
+              private taskStorageService: TaskStorageService,
+              private router: ActivatedRoute) { }
 
   ngOnInit() {
+    this.tasks = this.taskStorageService.findAll();
     this.taskContainerService.dataUpdate$.subscribe((task: Task) => {
       this.taskToEdit = task;
-      if (this.fixedIndex != null && task != null) {
-          this.changeTask(task);
-      } else if (this.fixedIndex != null) {
-        this.fixedIndex = null;
-        this.editMode = false;
+      if (task.id === null) {
+        this.taskStorageService.addNewTask(task);
       } else {
-        this.editTask(task.name);
+        // this.router.navigate(['tasks', task.id]);
+        this.taskStorageService.updateTask(task);
       }
+      // if (this.fixedIndex != null && task != null) {
+      //     this.changeTask(task);
+      // } else if (this.fixedIndex != null) {
+      //   this.fixedIndex = null;
+      //   this.editMode = false;
+      // } else {
+      //   this.editTask(task.name);
+      // }
     });
   }
 
@@ -101,34 +54,33 @@ export class TaskListComponent implements OnInit {
   getTaskListsSize() {
     return this.tasks.length;
   }
-  deleteTaskFromArray(name: string) {
-    let index = this.tasks.findIndex((task) => task.name === name);
-    if (index != -1) {
-      this.tasks.splice(index, 1);
-    }
-    console.log('Задача ' + name + ' удалена');
+  deleteTaskFromArray(id: number) {
+    this.taskStorageService.deleteTaskFromArray(id);
+    // let index = this.tasks.findIndex((task) => task.name === name);
+    // if (index != -1) {
+    //   this.tasks.splice(index, 1);
+    // }
+    // console.log('Задача ' + name + ' удалена');
   }
   getTasksAmountByStatus(status: string) {
     return this.tasks.filter(task => task.status === status).length;
   }
   addNewTask(task: Task) {
-    this.tasks.push(task);
+    this.taskStorageService.addNewTask(task);
   }
   editTask(name: string) {
     this.editMode = true;
     let index = this.tasks.findIndex((task) => task.name === name);
     if (index != -1) {
-      this.fixedIndex = index;
+      // this.fixedIndex = index;
       this.taskToEdit = {...this.tasks[index]};
     }
   }
 
   changeTask(task: Task) {
     this.editMode = false;
-    if (task != null) {
-      this.tasks[this.fixedIndex] = task;
-    }
-    this.fixedIndex = null;
+    this.taskStorageService.updateTask(task);
+    // this.fixedIndex = null;
   }
 
 

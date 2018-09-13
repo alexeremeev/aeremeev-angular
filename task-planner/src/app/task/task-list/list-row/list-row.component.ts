@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TaskContainerService } from '../../../shared/services/task-container.service';
-import { Task } from '../task.model';
 import { HelperService } from '../../../shared/services/helper.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: '[app-list-row]',
@@ -10,32 +10,33 @@ import { HelperService } from '../../../shared/services/helper.service';
 })
 export class ListRowComponent implements OnInit {
 
-  @Output() deleteTaskEmitter = new EventEmitter<string>();
-
+  @Output() deleteTaskEmitter = new EventEmitter<number>();
+  @Input() id: number;
   @Input() name: string;
   @Input() category: string;
   @Input() dateStart: string;
   @Input() dateEnd: string;
   @Input() status: string;
 
-  constructor(private helperService: HelperService, private taskContainerService: TaskContainerService) { }
+  constructor(private helperService: HelperService, private taskContainerService: TaskContainerService, private router: Router) { }
 
   ngOnInit() {
-
   }
 
   deleteTask() {
-    this.deleteTaskEmitter.emit(this.name)
+    this.deleteTaskEmitter.emit(this.id)
   }
   editTask() {
-    let task = new Task(
-      this.name,
-      this.category,
-      this.dateStart,
-      this.dateEnd,
-      this.status
-    );
-    this.taskContainerService.updateData(task);
+    this.router.navigate(['tasks', this.id])
+    // let task = new Task(
+    //   this.id,
+    //   this.name,
+    //   this.category,
+    //   this.dateStart,
+    //   this.dateEnd,
+    //   this.status
+    // );
+    // this.taskContainerService.updateData(task);
   }
 
 }

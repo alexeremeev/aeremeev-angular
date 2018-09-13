@@ -42,6 +42,7 @@
   <div class="divTableBody">
     <ng-container *ngFor="let task of tasks">
       <div class="divTableRow" app-list-row *ngIf="showRow(task)"
+           [id] ="task.id"
            [name] = "task.name"
            [category] = "task.category"
            [dateStart] = "task.dateStart"

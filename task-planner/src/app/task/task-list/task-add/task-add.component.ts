@@ -9,7 +9,6 @@ import { Task } from '../task.model';
 export class TaskAddComponent implements OnInit {
 
   @Output() addTaskEmitter = new EventEmitter<Task>();
-
   @Input() name : string;
   @Input() category: string;
   @Input() dateStart: string;
@@ -23,6 +22,7 @@ export class TaskAddComponent implements OnInit {
 
   addTask() {
     let task = new Task(
+      null,
       this.name,
       this.category,
       this.dateStart,

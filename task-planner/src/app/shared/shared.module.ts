@@ -13,6 +13,7 @@ import { LogDirective } from './directives/log.directive';
   ],
   providers: [
     HelperService,
+    TaskContainerService,
     TaskContainerService
   ],
   declarations: [
